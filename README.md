@@ -47,6 +47,18 @@ sudo dnf -y install gcc make cmake patch git texinfo flex bison gettext gmp-deve
 apk add build-base cmake git texinfo flex bison gettext gmp-dev mpfr-dev mpc1-dev zlib-dev
 ```
 
+* Void
+
+```bash
+sudo xbps-install -Su mpfr libmpc-devel base-devel bison gettext texinfo gmp-devel gsl-devel zlib-devel cmake patch git boost-devel boost
+```
+
+* Arch
+
+```bash
+sudo pacman -S mpfr mpc mpd base-devel bison gettext texinfo gmp gsl zlib cmake patch git boost
+```
+
 2. *Optional.* If you are upgrading from the previous version of the PS2DEV environment, it is highly recommended to remove the content of the PS2DEV folder before upgrade. This is a necessary step after the major toolchain upgrade.
 
 ```bash
