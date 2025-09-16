@@ -17,11 +17,11 @@ jobs:
     strategy:
       matrix:
         os: [
-          [macos-latest, arm64, bash, "macos-latest", null, null],
-          [macos-13, x86_64, bash, "macos-13", null, null],
+          [macos-latest, arm64, bash, "macos-latest", null, " "],
+          [macos-13, x86_64, bash, "macos-13", null, " "],
           [ubuntu-latest, x86_64, bash, "ubuntu-latest", "ubuntu:20.04", "--user 0"],
           [ubuntu-24.04-arm, arm64, bash, "ubuntu-latest-arm", "ubuntu:20.04", "--user 0"],
-          [windows-latest, x86_64, msys2, "windows-latest", null, null]
+          [windows-latest, x86_64, msys2, "windows-latest", null, " "]
         ]
       fail-fast: false
     defaults:
