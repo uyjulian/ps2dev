@@ -18,6 +18,9 @@ jobs:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       DISPATCH_TOKEN: ${{ secrets.DISPATCH_TOKEN }}
+    container:
+      image: ubuntu:20.04
+      options: "--user 0"
 
     steps:
     - uses: actions/checkout@v4
