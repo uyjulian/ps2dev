@@ -17,19 +17,19 @@ jobs:
     strategy:
       matrix:
         os: [
-          [macos-latest, arm64, bash, "macos-latest", null, " "],
-          [macos-13, x86_64, bash, "macos-13", null, " "],
+          [macos-latest, arm64, bash, "macos-latest", null, null],
+          [macos-13, x86_64, bash, "macos-13", null, null],
           [ubuntu-latest, x86_64, bash, "ubuntu-latest", "ubuntu:20.04", "--user 0"],
           [ubuntu-24.04-arm, arm64, bash, "ubuntu-latest-arm", "ubuntu:20.04", "--user 0"],
-          [windows-latest, x86_64, msys2, "windows-latest", null, " "]
+          [windows-latest, x86_64, msys2, "windows-latest", null, null]
         ]
       fail-fast: false
     defaults:
      run:
       shell: ${{ matrix.os[2] }} {0}
     container:
-      image: ${{ matrix.os[5] }}
-      options: ${{ matrix.os[6] }}
+      image: ${{ matrix.os[4] }}
+      options: ${{ matrix.os[5] }}
 
     steps:
     - uses: actions/checkout@v4
@@ -89,7 +89,7 @@ jobs:
       if: github.ref == 'refs/heads/master'
       uses: softprops/action-gh-release@v2
       with:
-        files: ps2dev-${{matrix.os[0]}}.tar.gz
+        files: ps2dev-${{matrix.os[3]}}.tar.gz
         prerelease: true
         name: "Development build"
         tag_name: "latest"
@@ -100,7 +100,7 @@ jobs:
       if: startsWith(github.ref, 'refs/tags/')
       uses: softprops/action-gh-release@v2
       with:
-        files: ps2dev-${{matrix.os[0]}}.tar.gz
+        files: ps2dev-${{matrix.os[3]}}.tar.gz
         tag_name: ${{ steps.tag.outputs.VERSION }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
