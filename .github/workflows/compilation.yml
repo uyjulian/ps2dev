@@ -17,17 +17,19 @@ jobs:
     strategy:
       matrix:
         os: [
-          [macos-latest, arm64, bash],
-          [macos-13, x86_64, bash],
-          [ubuntu-latest, x86_64, bash],
-          [ubuntu-22.04-arm, arm64, bash],
-          [ubuntu-24.04-arm, arm64, bash],
-          [windows-latest, x86_64, msys2]
+          [macos-latest, arm64, bash, "macos-latest", null, null],
+          [macos-13, x86_64, bash, "macos-13", null, null],
+          [ubuntu-latest, x86_64, bash, "ubuntu-latest", "ubuntu:20.04", "--user 0"],
+          [ubuntu-24.04-arm, arm64, bash, "ubuntu-latest-arm", "ubuntu:20.04", "--user 0"],
+          [windows-latest, x86_64, msys2, "windows-latest", null, null]
         ]
       fail-fast: false
     defaults:
      run:
       shell: ${{ matrix.os[2] }} {0}
+    container:
+      image: ${{ matrix.os[5] }}
+      options: ${{ matrix.os[6] }}
 
     steps:
     - uses: actions/checkout@v4
@@ -71,12 +73,12 @@ jobs:
 
     - name: Prepare ps2dev folder
       run: |
-        tar -zcvf ps2dev-${{matrix.os[0]}}.tar.gz ps2dev
+        tar -zcvf ps2dev-${{matrix.os[3]}}.tar.gz ps2dev
 
     - uses: actions/upload-artifact@v4
       with:
-        name: ps2dev-${{matrix.os[0]}}-ps2dev-${{matrix.os[1]}}-${{ steps.slug.outputs.sha8 }}
-        path: ps2dev-${{matrix.os[0]}}.tar.gz
+        name: ps2dev-${{matrix.os[3]}}-ps2dev-${{matrix.os[1]}}-${{ steps.slug.outputs.sha8 }}
+        path: ps2dev-${{matrix.os[3]}}.tar.gz
 
     - name: Extract tag name
       if: startsWith(github.ref, 'refs/tags/')
