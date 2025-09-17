@@ -95,7 +95,7 @@ If you're on Raspberry Pi OS, run this:
 curl -o ps2dev-latest.tar.gz -LC - https://github.com/ps2dev/ps2dev/releases/download/latest/ps2dev-ubuntu-22.04-arm.tar.gz
 tar -xf ps2dev-latest.tar.gz --strip-components 1 -C $PS2DEV
 ```
-There are also precompiled toolchains for Windows (x86), MacOS 13 and Linux 24.04 (ARM, GLIBC 3.29) at https://github.com/ps2dev/ps2dev/releases
+There are also precompiled toolchains for Windows (x86), MacOS 13 and Linux 24.04 (ARM, GLIBC 3.28) at https://github.com/ps2dev/ps2dev/releases
 
 6. *Optional.* To build and install the toolchain from source, clone the repository, then run `build-all.sh`
 
