@@ -37,8 +37,7 @@ jobs:
     - name: Install Ubuntu packages
       if: startsWith(matrix.os[0], 'ubuntu')
       run: |
-        sudo apt-get update
-        sudo apt-get -y install texinfo bison flex gettext autopoint autoconf automake libgmp3-dev libmpfr-dev libmpc-dev
+        apt-get -y update && apt-get -y -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' install texinfo bison flex gettext autopoint autoconf automake libgmp3-dev libmpfr-dev libmpc-dev
 
     - name: Install macOS packages
       if: startsWith(matrix.os[0], 'macos')
