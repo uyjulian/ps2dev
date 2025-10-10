@@ -87,14 +87,14 @@ jobs:
       if: startsWith(matrix.os.runs-on, 'macos') && matrix.os.macos-package-manager == 'brew'
       run: |
         brew update
-        brew install texinfo bison flex gnu-sed autoconf automake libtool gsl gmp mpfr libmpc md5sha1sum wget curl
+        brew install texinfo bison flex gnu-sed autoconf automake libtool gsl gmp mpfr libmpc md5sha1sum wget curl cmake
 
     - name: Install macOS packages (port)
       if: startsWith(matrix.os.runs-on, 'macos') && matrix.os.macos-package-manager == 'port'
       run: |
         curl -LO https://raw.githubusercontent.com/GiovanniBussi/macports-ci/master/macports-ci
         . ./macports-ci install --remove-brew --version=2.11.5 --sync=rsync
-        sudo port install gsl gmp mpfr libmpc libiconv bison flex gsed texinfo autoconf automake libtool md5sha1sum wget curl
+        sudo port install gsl gmp mpfr libmpc libiconv bison flex gsed texinfo autoconf automake libtool md5sha1sum wget curl cmake
 
     - name: Install MSYS2 packages
       if: startsWith(matrix.os.runs-on, 'windows')
