@@ -77,6 +77,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
+    - name: Add Kitware APT repository for Ubuntu
+      if: startsWith(matrix.os.runs-on, 'ubuntu')
+      run: |
+        apt-get -y update
+        apt-get install -y -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' curl
+        curl -LsSf https://apt.kitware.com/kitware-archive.sh | sh
+
     - name: Install Ubuntu packages
       if: startsWith(matrix.os.runs-on, 'ubuntu')
       run: |
