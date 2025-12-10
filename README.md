@@ -27,36 +27,29 @@ These scripts download (`git clone`) and install:
 
 ## Requirements
 
-1. Install gcc/clang, make, cmake, patch, git, texinfo, flex, bison, gettext, wget, gsl, gmp, zlib, mpfr and mpc if you don't have those packages.
+1. Install the following packages if they aren't already installed:  
 
-* Ubuntu
+* gcc/clang
+* make
+* cmake
+* patch
+* git
+* texinfo
+* flex
+* bison
+* gettext
+* wget
+* gsl
+* gmp
+* zlib
+* mpfr
+* mpc
 
-```bash
-sudo apt -y install gcc g++ make cmake patch git texinfo flex bison gettext libgsl-dev libgmp3-dev libmpfr-dev libmpc-dev zlib1g-dev autopoint
-```
-
-* Fedora/CentOS
-
-```bash
-sudo dnf -y install gcc make cmake patch git texinfo flex bison gettext gmp-devel mpfr-devel libmpc-devel zlib-devel
-```
-
-* Alpine
-
-```bash
-apk add build-base cmake git texinfo flex bison gettext gmp-dev mpfr-dev mpc1-dev zlib-dev
-```
-
-* Void
+It is recommended to install the latest version of these packages on Linux or macOS using [Homebrew](https://brew.sh).  
 
 ```bash
-sudo xbps-install -Su mpfr libmpc-devel base-devel bison gettext texinfo gmp-devel gsl-devel zlib-devel cmake patch git boost-devel boost
-```
-
-* Arch
-
-```bash
-sudo pacman -S mpfr mpc mpd base-devel bison gettext texinfo gmp gsl zlib cmake patch git boost
+brew update
+brew install gcc make gpatch git texinfo bison flex gnu-sed autoconf automake libtool gsl gmp mpfr libmpc md5sha1sum wget curl cmake gettext zlib
 ```
 
 2. *Optional.* If you are upgrading from the previous version of the PS2DEV environment, it is highly recommended to remove the content of the PS2DEV folder before upgrade. This is a necessary step after the major toolchain upgrade.
