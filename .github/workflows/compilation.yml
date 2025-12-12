@@ -81,7 +81,11 @@ jobs:
       if: startsWith(matrix.os.runs-on, 'ubuntu')
       run: |
         apt-get -y update
-        apt-get -y -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' install texinfo bison flex gettext autopoint autoconf automake libgmp3-dev libmpfr-dev libmpc-dev cmake g++ gcc git libgsl-dev make patch zlib1g-dev wget curl
+        apt-get -y -o Dpkg::Options::='--force-confdef' -o Dpkg::Options::='--force-confold' install texinfo bison flex gettext autopoint autoconf automake libtool libgmp3-dev libmpfr-dev libmpc-dev g++ gcc git libgsl-dev make patch zlib1g-dev wget curl ca-certificates gpg
+        # Install newer cmake (3.20+) from Kitware's official repository
+        # Ubuntu 20.04's default cmake is 3.16.3, but xz v5.8.1 requires 3.20+
+        curl -LsSf https://apt.kitware.com/kitware-archive.sh | sh
+        apt-get -y install cmake
 
     - name: Install macOS packages (brew)
       if: startsWith(matrix.os.runs-on, 'macos') && matrix.os.macos-package-manager == 'brew'
@@ -110,6 +114,7 @@ jobs:
 
     - name: Runs all the stages in the shell
       run: |
+        set -e
         . ./config/ci-env.sh
         if test -f ./build-all.sh; then ./build-all.sh; fi
         if test -f ./toolchain.sh; then ./toolchain.sh; fi
